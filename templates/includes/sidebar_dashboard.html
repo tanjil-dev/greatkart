@@ -1,0 +1,35 @@
+{% load static %}
+<style>
+    .sidebar .logout-button {
+        background-color: #ffc299;
+        border: 1px solid red;
+        color: red;
+        padding: 15px 87px;
+        margin-top: 20px;
+        width: 100%;
+        cursor: pointer;
+        width: 100px;
+        transition: background-color 0.3s, color 0.3s;
+        text-decoration: none;
+        margin-top:10px;
+    }
+    .menu-item{
+        margin-bottom :10px;
+    }
+    .logout-button{
+        margin-bottom :10px;
+    }
+</style>
+<div class="container">
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li class="menu-item"><a class="dashboard_tag {% if '/account/' == request.path %}active{% endif %}" href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li class="menu-item"><a class="dashboard_tag {% if '/my_orders/' in request.path %}active{% endif %}" href="{% url 'my_orders' %}">My Orders</a></li>
+            <li class="menu-item"><a class="dashboard_tag {% if '/change_password/' in request.path %}active{% endif %}" href="{% url 'change_password' %}"> Change Password</a></li>
+        </ul>
+        <a href="{% url 'logout' %}" class="logout-button" > <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+    </div>
+
+
+  

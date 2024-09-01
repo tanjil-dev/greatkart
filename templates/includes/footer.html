@@ -1,0 +1,47 @@
+{% load static %}
+<!-- ========================= FOOTER ========================= -->
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-left">
+            <img src="{% static "/images/loja logo (1).png" %}" height="50" width="100" alt="Loja Logo">
+            {% comment %} <h2>MENU</h2> {% endcomment %}
+            {% comment %} <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="clothes.html">Clothes</a></li>
+                <li><a href="/templates/accessories.html">Accessories</a></li>
+                <li><a href="appliances.html">Appliances</a></li>
+                <li><a href="#">Loja Products</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul> {% endcomment %}
+        </div>
+        <div class="footer-right">
+            <div class="social-media">
+                <a href="https://www.instagram.com/lojastore.pk/"><img src="{% static "/images/instagram icon.png" %}" alt="Instagram"></a>
+                <a href="https://www.facebook.com/lojastore.pk"><img src="{% static "/images/facebok icon.png" %}" alt="Facebook"></a>
+                {% comment %} <a href="#"><img src="{% static "/images/LinkedIn.png" %}" alt="LinkedIn"></a> {% endcomment %}
+            </div>
+            <p>Feel free to ask any questions.</p>
+            <div>
+              <a href="{% url "about" %}" class="new-btn-crousel"><span >ABOUT US</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="rights">
+        <p>© 2024 Loja. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- ========================= FOOTER END // ========================= -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.thumb a').click(function(e){
+			e.preventDefault();
+			$('.mainImage img').attr('src',$(this).attr('href'));
+		})
+	})
+</script>
+</body>
+</html>

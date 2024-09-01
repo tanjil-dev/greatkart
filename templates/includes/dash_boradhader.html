@@ -1,0 +1,22 @@
+{% load static %}
+<link rel="stylesheet" href="{% static "/css/dashboard.css" %}">
+<header class="header">
+    <div class="header-left">
+        <a href="{% url "store" %}"> <img src="{% static "/images/loja logo (1).png" %}" alt="Loja Logo" class="logo"></a>
+    </div>
+    <div class="header-middle">
+        <button class="category-button">All category <span>&#9662;</span></button>
+        <a href="{% url "store" %}" class="store-button">Store</a>
+        
+    </div>
+    <div class="header-right">
+        {% if user.id is None %}
+                <a href="{% url "login" %}" class="login-register">LOGIN   / <a href="{% url 'register' %}">REGISTER</a></a>
+                {% else %}
+                <span>{{ user.first_name|capfirst }} </span>
+            <a href="{% url "dashboard" %}" class="">Dashboard</a>
+            <a href="{% url "logout" %}" class="login-register">Logout </a>
+            {% endif %}
+        
+    </div>
+</header>

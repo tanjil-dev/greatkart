@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href=" {% static "/css/style.css" %} ">
+{% comment %} {% block tilte %}REGISTER LOJA{% endblock tilte %} {% endcomment %}
+ <style>
+    .reg-container {
+
+        margin-top: 59px;
+        margin-left: 38%;
+    }
+ </style>
+{% block content %}
+
+
+{% include 'includes/alerts.html' %}
+
+
+    <img src="{% static 'images/1121.jpg' %}" alt="Background" class="background"> <!-- Replace with your background image URL -->
+<div class="reg-container">
+    <img class="reg-logo" src="{% static 'images/loja logo (1).png' %}">
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+            <div class="input-reg-container">
+                <label for="first-name">First Name</label>
+                {{ form.first_name }}
+            </div>
+            <div class="input-reg-container">
+                <label for="last-name">Last Name</label>
+                {{ form.last_name }}
+            </div>
+        </div>
+        
+        <div class="input-reg-container">
+            <label for="email">Email</label>
+            {{ form.email }}
+        </div>
+        <div class="input-reg-container">
+            <label for="phone">Phone</label>
+                                    {{form.phone_number}}
+            </div>
+        <div class="input-group">
+            <div class="input-reg-container">
+                <label for="password">Password</label>
+                {{ form.password }}
+            </div>
+            <div class="input-reg-container">
+                <label for="confirm-password">Confirm Password</label>
+                {{ form.confirm_password }}
+            </div>
+        </div>
+        <input type="submit" value="Register">
+        {{ form.email.errors }}
+        {{ form.non_field_errors }}
+    </form>
+    <p class="text-center mt-4">Have an account? <a href="{% url 'login' %}">Log In</a></p>
+</div>
+<br><br>
+<!-- ============================ COMPONENT REGISTER END.// ================================= -->
+
+{% endblock content %}

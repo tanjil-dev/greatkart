@@ -1,0 +1,80 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+<link rel="stylesheet" href="{% static "/css/dashboard.css" %}">
+{% block content %} 
+{% include "includes/dash_boradhader.html" %}
+
+    
+       
+    </div>
+    <div class="invoice-container">
+        <div class="header">
+            <img src="{% static "/images/loja logo (1).png" %}" width="150px" height="100px" alt="Loja Logo">
+            <div class="invoice-to">
+                <p>{{order.full_name}}</p>
+                <p>{{order.full_address}}</p>
+                <p>{{order.city}} , {{order.state}}</p>
+                <p>{{order.country}}</p>
+                
+            </div>
+        </div>
+        <div class="invoice-details">
+            <h2>Invoice</h2>
+            <p><strong>Order Number #</strong> {{order_number}}</p>
+            <p><strong>Transaction ID #</strong> {{transID}}</p>
+            <p><strong>Order Date:</strong> {{order.created_at}}</p>
+            <p><strong>Status:</strong> {{payment.status}}</p>
+        </div>
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in ordered_products  %}
+                <tr>
+                    <td>{{item.product.product_name}}
+                        <p class="text-muted small">
+                            {% if item.variations.all %}
+                              {% for i in item.variations.all %}
+                               {{ i.variation_category | capfirst }} : {{ i.variation_value  | capfirst  }}<br>
+                             {% endfor %}
+                            {% endif %}
+                        </p>
+                    </td>
+                    <td class="text-center">{{item.quantity}}</td>
+                    <td class="text-center">PKR {{item.product.price}}.00 USD</td>
+                </tr> 
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2" class="text-right">Sub Total:</th>
+                    <th class="text-center">PKR {{subtotal}}.00 USD</th>
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-right">Delivery Charges:</th>
+                    <th class="text-center">PKR {{order.tax}} USD</th>
+                </tr>
+                
+                <tr>
+                    <th colspan="2" class="text-right">Grand Total:</th>
+                    <th class="text-center">PKR {{order.order_total}}.00 USD</th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="invoice-total">
+            
+        <div class="footer">
+            <p>Thank you for shopping with us!</p>
+        </div>
+    </div>
+
+
+{% endblock content %}

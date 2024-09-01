@@ -1,0 +1,105 @@
+{% load static %}
+
+<div class="content">
+  <header class="header">
+    <div class="top-bar">
+      <div class="country-selector">COUNTRY ▼</div>
+      <div class="free-delivery">FREE DELIVERY</div>
+      <div class="social-media">
+        <a href="https://www.instagram.com/lojastore.pk/"
+          ><img src="{% static 'images/instagram icon.png' %}" alt="Instagram"
+        /></a>
+        <a href="https://www.facebook.com/lojastore.pk"
+          ><img src="{% static 'images/facebok icon.png' %}" alt="Facebook"
+        /></a>
+        <a href="{% url 'cart' %}" class="cart-link">
+          <div class="cart-icon">
+            <span class="cart-count">{{ cart_count }}</span>
+            <!-- Initial cart count -->
+            &#128722;
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="main-nav">
+      <div class="nav-left">
+        <a href="{% url 'contact' %}" class="contact-us">CONTACT US</a>
+      </div>
+      <a href="/store">
+        <div class="logo">
+          <img src="{% static 'images/loja logo (1).png' %}" alt="Loja" />
+        </div>
+      </a>
+      <div class="nav-right">
+        {% if user.id is None %}
+        <a href="{% url 'login' %}" class="login-register"
+          >LOGIN / <a href="{% url 'register' %}">REGISTER</a></a
+        >
+        {% else %}
+        <span>{{ user.first_name|capfirst }}</span>
+        <a href="{% url 'dashboard' %}" class="">Dashboard</a>
+        <a href="{% url 'logout' %}" class="login-register">Logout</a>
+        {% endif %}
+      </div>
+    </div>
+    <nav class="bottom-nav">
+      <ul>
+        {% url 'home' as home_url %}
+        <li class="{% if request.path == home_url %}active{% endif %}">
+          <a href="{{ home_url }}">HOME</a>
+        </li>
+        {% for category in categories %}
+        <li
+          class="nav-item {% if request.path == category.get_absolute_url %}active{% endif %}"
+        >
+          <a href="{% url 'products_by_category' category.slug %}"
+            >{{ category.category_name }}</a
+          >
+          <ul class="dropdown-menu">
+            {% for subcategory in category.subcategories.all %}
+            <li class="dropdown-item">
+              <a href="{% url 'subcategory_detail' subcategory.slug %}"
+                >{{ subcategory.subcategory_name }}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+        <li><a href="{% url 'store' %}">LOJA PRODUCTS</a></li>
+      </ul>
+    </nav>
+    <div class="hamburger-menu" id="hamburger-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav">
+      <span class="close-btn" id="close-btn">&times;</span>
+      <ul>
+        {% url 'home' as home_url %}
+        <li class="{% if request.path == home_url %}active{% endif %}">
+          <a href="{{ home_url }}">HOME</a>
+        </li>
+        {% for category in categories %}
+        <li class="nav-item">
+          <a href="{% url 'products_by_category' category.slug %}"
+            >{{ category.category_name }}</a
+          >
+          <ul class="dropdown-menu">
+            {% for subcategory in category.subcategories.all %}
+            <li class="dropdown-item">
+              <a href="{% url 'subcategory_detail' subcategory.slug %}"
+                >{{ subcategory.subcategory_name }}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endfor %}
+        <li><a href="{% url 'store' %}">LOJA PRODUCTS</a></li>
+        <li><a href="{% url 'contact' %}">CONTACT US</a></li>
+      </ul>
+    </nav>
+  </header>
+</div>

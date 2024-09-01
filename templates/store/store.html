@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+/* Product Card Section */
+.updated-main-product-section {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Adjust the gap value as needed */
+    padding: 0; /* Removed padding */
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.updated-main-product-card {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Fixed width */
+    height: 470px; /* Fixed height */
+    overflow: hidden;
+    text-align: left;
+    /* border: 1px solid #ddd; */
+    /* border-radius: 5px; */
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+    margin: 10px;
+}
+
+.updated-main-product-card img {
+    width: 100%;
+    height: 360px; /* Ensure image height is fixed */
+    object-fit: cover; /* Maintain aspect ratio and cover entire area */
+}
+
+.updated-product-info {
+    padding: 10px;
+    flex-grow: 1; /* Ensure info section grows with card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute space evenly */
+}
+
+.updated-add_to_cart_title {
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 10px;
+}
+b, strong {
+    font-weight: bolder;
+    font-size: 27px;
+}
+.updated-product-info .updated-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.updated-product-info .updated-price {
+    font-size: 14px;
+    color: #ebb592;
+    margin-right: auto; /* Align to the left */
+}
+
+.updated-product-info .updated-price sup {
+    font-size: 14px;
+    top: -1em;
+}
+
+.updated-addtocart {
+    text-decoration: none;
+    background-color: #d2b59b;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: auto; /* Align to the right */
+}
+
+.updated-addtocart:hover {
+    color: white;
+    background-color: #f3bc92;
+    cursor: default; /* Remove the cursor change on hover */
+}
+
+
+</style>
+{% include "includes/crousel.html" %}
+        <!-- learn more information  -->
+        <div class="category_learnMore">
+            {% for category in categories %}
+                <div class="category_more">
+                    <!-- Display category image if it exists, otherwise show a placeholder image -->
+                    <img src="{% if category.cat_image %}{{ category.cat_image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}" alt="{{ category.category_name }}">
+
+                    <h2>{{ category.category_name }}</h2>
+                    <a href="{% url 'products_by_category' category.slug %}" class="btn-crousel"><span>MORE</span></a>
+                </div>
+            {% empty %}
+ 
+            {% endfor %}
+        </div>
+        
+        
+  
+  </div>
+  
+      <!-- learn more end  -->
+  
+ 
+
+
+  <div class="updated-main-product-section">
+    {% if products %}
+        {% for product in products %}
+        <div class="updated-main-product-card">
+            <img src="{{ product.images.url }}" alt="Product Image">
+            <div class="updated-product-info">
+                <h2 class="updated-add_to_cart_title">{{ product.product_name }}</h2>
+                <div class="updated-bottom">
+                    <p class="updated-price"><sup>PKR</sup><b>{{ product.price }}</b></p>
+                    <a href="{{ product.get_product_detail_url }}" class="updated-addtocart">View Product</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="text-center">
+            <h2 class="text-center">No Item Found, Please try Again</h2>
+        </div>
+    {% endif %}
+</div>
+
+
+
+  
+
+{% endblock content %}

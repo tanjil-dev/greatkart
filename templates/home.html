@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}LOJA HOME{% endblock title %}
+<style>
+    .left-column img {
+        background: none;
+        object-fit: cover;
+        margin-left: 107px;
+        width: 100%;
+        max-height: 611px;
+    }
+</style>
+{% block content %}
+
+{% comment %} {% include "includes/crousel.html" %} {% endcomment %}
+        <!-- SECTION -->
+        {% comment %} <div class="loader-container"> {% endcomment %}
+            <div class="bouncing-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            
+            </div>
+            <!-- <div class="loader_heading"> -->
+                <h1 class="loader_loja_heading"> Welcome to LOJA</h1>
+                <p class="paragraph"></p>
+            <!-- </div> -->
+        {% comment %} </div> {% endcomment %}
+        <div class="section-1">
+            {% for image in home_images %}
+            <div class="left-column">
+                <img src="{{ image.image_1.url }}" alt="Left Image">
+            </div>
+            <div class="right-column">
+                <div class="top-image">
+                    <img src="{{ image.image_2.url }}" alt="Top Right Image">
+                </div>
+                <div class="bottom-images">
+                    <img src="{{ image.image_3.url }}" alt="Bottom Right Image 1">
+                    <img src="{{ image.image_4.url }}" alt="Bottom Right Image 2">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- card section -->
+    <div class="cone">
+        <div class="swip_component" id="card-container-1">
+            <div class="swipe_clothe card_1_clothe">
+                <img class="card_image" src="{{ image.card_1_1.url }}" alt="Clothes 1">
+            </div>
+            <div class="swipe_clothe card_2_clothe">
+                <img class="card_image" src="{{ image.card_1_2.url }}" alt="Clothes 2">
+            </div>
+            <div class="swipe_clothe card_3_clothe">
+                <img class="card_image" src="{{ image.card_1_3.url }}" alt="Clothes 3">
+            </div>
+            <div class="label_card">Clothes</div>
+        </div>
+        <div class="swip_component" id="card-container-2">
+            <div class="swipe_clothe card_1_clothe">
+                <img class="card_image" src="{{ image.card_2_1.url }}" alt="Accessory 1">
+            </div>
+            <div class="swipe_clothe card_2_clothe">
+                <img class="card_image" src="{{ image.card_2_2.url }}" alt="Accessory 2">
+            </div>
+            <div class="swipe_clothe card_3_clothe">
+                <img class="card_image" src="{{ image.card_2_3.url }}" alt="Accessory 3">
+            </div>
+            <div class="label_card">Accessories</div>
+        </div>
+        <div class="swip_component" id="card-container-3">
+            <div class="swipe_clothe card_1_clothe">
+                <img class="card_image" src="{{ image.card_3_1.url }}" alt="Loja Product 1">
+            </div>
+            <div class="swipe_clothe card_2_clothe">
+                <img class="card_image" src="{{ image.card_3_2.url }}" alt="Loja Product 2">
+            </div>
+            <div class="swipe_clothe card_3_clothe">
+                <img class="card_image" src="{{ image.card_3_3.url }}" alt="Loja Product 3">
+            </div>
+            <div class="label_card">Loja Products</div>
+        </div>
+    </div>
+    
+     <!-- section-2 -->
+    <div class="additional-container">
+        <div class="additional-left-column">
+            <div class="additional-top-image">
+                <img src="{{ image.image_bottom_1.url }}" alt="Left Top Image">
+            </div>
+            <div class="additional-bottom-images">
+                <img src="{{ image.image_bottom_2.url }}" alt="Left Bottom Image 1">
+                <img src="{% static "/images/section2_01 (1).jpg" %}" alt="Left Bottom Image 2">
+            </div>
+        </div>
+        <div class="additional-right-column">
+            <div class="additional-large-image">
+                <img src="{{ image.image_bottom_3.url }}" alt="Right Large Image">
+            </div>
+            <div class="additional-bottom-row-images">
+                <img src="{{ image.image_bottom_4.url }}" alt="Right Bottom Image 1">
+                <img src="{% static "/images/section2_01 (2).webp" %}" alt="Right Bottom Image 2">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Categories Section -->
+<!-- Categories Section -->
+<div class="categories-section">
+    <h2 class="categories-heading">Our Categories</h2>
+    <div class="category-icons">
+        <div class="category-icon">
+            <img src="{% static "/images/homeicon.png" %}" alt="Home Icon">
+            <span>Home</span>
+        </div>
+        <div class="category-icon">
+            <img src="{% static "/images/clotheicon.png" %}" alt="Clothes Icon">
+            <span>Clothes</span>
+        </div>
+        <div  class="category-icon">
+            <img src="{% static "/images/acessoriesicon.png" %}" alt="Accessories Icon">
+            <span> Accessories</span>
+        </div>
+        <div class="category-icon">
+            <img src="{% static "/images/applianceicon.png" %}" alt="Appliances Icon">
+            <span>Appliances</span>
+        </div>
+        <div class="category-icon">
+            <img src="{% static "/images/loja logo (1).png" %}" alt="Loja Icon">
+            <span>Loja</span>
+        </div>
+    </div>
+</div>
+<div class="down_banner">
+    <img src="{% static "/images/mainbg.png" %}" alt="Banner Image" style="max-width: 100%; height: auto">
+  </div>
+  {% endblock content %}
+ 

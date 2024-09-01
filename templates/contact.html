@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+
+<h1 class="contact_us_heading">Contact Us</h1>
+<div class="contact-container">
+   
+    <div class="content">
+        <div class="contact-form">
+            <h2>Get in touch</h2>
+            <form>
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="contact" placeholder="Contact" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+                <textarea name="message" placeholder="Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <div class="direct-contact">
+            <h2>Want to reach us directly?</h2>
+            <p>Connect with us to explore investment opportunities tailored to your needs and goals.</p>
+            <p>📞 +92 322 8416830</p>
+            <p>✉️  <a href="mailto:lojastore099@gmail.com">lojastore099@gmail.com</a></p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
