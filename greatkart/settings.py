@@ -135,7 +135,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, images)
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/static'
-STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Media files (uploaded by users)
 MEDIA_URL = '/media/'
