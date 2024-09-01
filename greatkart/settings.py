@@ -25,7 +25,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=True ,cast=bool)#True
-
+print(DEBUG)
 ALLOWED_HOSTS = ['loja.pk', 'www.loja.pk', 'localhost', '127.0.0.1']
 
 #  greatKart-course-env.eba-a7aervi5.us-west-2.elasticbeanstalk.com
@@ -132,15 +132,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "greatkart" / "static"
-STATICFILES_DIRS = [    
-    BASE_DIR / "static",
-]
+# Static files (CSS, JavaScript, images)
+STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/static'
 
-# media files configration
-MEDIA_URL   = '/media/'
-MEDIA_ROOT  = BASE_DIR / "newsite" / "media"
+# Media files (uploaded by users)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/var/www/media'
 
 from django.contrib.messages import constants as messages
 
