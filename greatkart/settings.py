@@ -134,11 +134,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, images)
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/static'
+STATIC_ROOT = '/var/www/static/'
 
 # Media files (uploaded by users)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/media'
+MEDIA_ROOT = '/var/www/media/'
 
 from django.contrib.messages import constants as messages
 
