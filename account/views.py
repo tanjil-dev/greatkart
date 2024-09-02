@@ -37,7 +37,7 @@ def register(request):
 
                 # USER ACTIVATION PROCESS
 
-                current_site  = get_current_site(request)
+                current_site  = 'https://loja.pk/'
                 mail_subject  = 'Please activate your account'
                 message       = render_to_string('accounts/account_verification_email.html',{
                      

@@ -2,291 +2,246 @@
 
 {% load static %}
 {% block content %}
-<link href="{% static 'css/rating.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/rating.css' %}" rel="stylesheet" type="text/css" />
 {% comment %} {% include "includes/product_detailcss.html" %} {% endcomment %}
-{% comment %} <section class="section-content padding-y bg"> {% endcomment %}
-	{% comment %} <div class="container"> {% endcomment %}
-
-
-<style>
-	.row{
-		display: flex;
-		margin: auto;
-		margin-left: 100px;
-		margin-top: 10px;
-	}
-	/* Product Card Section */
-.updated-main-product-section {
-    display: flex;
-    justify-content: center;
-    gap: 40px; /* Adjust the gap value as needed */
-    padding: 0; /* Removed padding */
-    flex-wrap: wrap;
-}
-
-.updated-main-product-card {
-    display: flex;
-    flex-direction: column;
-    width: 300px; /* Fixed width */
-    height: 470px; /* Fixed height */
-    overflow: hidden;
-    text-align: left;
-    /* border: 1px solid #ddd; */
-    /* border-radius: 5px; */
-    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
-	margin: 10px;
-}
-
-.updated-main-product-card img {
-    width: 100%;
-    height: 360px; /* Ensure image height is fixed */
-    object-fit: cover; /* Maintain aspect ratio and cover entire area */
-}
-
-.updated-product-info {
-    padding: 10px;
-    flex-grow: 1; /* Ensure info section grows with card */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Distribute space evenly */
-}
-
-.updated-add_to_cart_title {
-    font-size: 18px;
-    color: #333;
-    margin: 0 0 10px;
-}
-b, strong {
-    font-weight: bolder;
-    font-size: 27px;
-}
-.updated-product-info .updated-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.updated-product-info .updated-price {
-    font-size: 14px;
-    color: #ebb592;
-    margin-right: auto; /* Align to the left */
-}
-
-.updated-product-info .updated-price sup {
-    font-size: 14px;
-    top: -1em;
-}
-
-.updated-addtocart {
-    text-decoration: none;
-    background-color: #d2b59b;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-left: auto; /* Align to the right */
-}
-
-.updated-addtocart:hover {
-    color: white;
-    background-color: #f3bc92;
-    cursor: default; /* Remove the cursor change on hover */
-}
-	</style>
-
-<div class="title-bar">
-					<h2>KAFTAN FASHION</h2>
-				</div>
-				<main>
-					<div class="product-details">
-						<div class="main-image">
-							<img src="{{ product.images.url }}" alt="Kaftan Fashion">
-							<div class="thumbnails">
-								{% for i in product_gallery  %}
-								<a href="{{i.image.url}}" target="mainImage" ><img src="{{i.image.url}}" alt="Product Image"></a>
-								{% endfor %}
-							</div>
-						</div>
-						<div class="product-info">
-							<form action="{% url 'add_cart' product.id %}" method="POST">
-								{% csrf_token %}
-								<h3>{{ product.product_name }}</h3>
-								<p class="kaftan_p">{{product.description}}</p>
-								<div class="price">
-									<span>PKR  {{product.price}}</span>
-								</div>
-								<div class="dropdown">
-									<label for="size">Select Size</label>
-									<select id="size" name="size" required>
-										<option value="" disabled selected>Select</option>
-										{% for i in product.variation_set.sizes %}
-											<option value="{{i.variation_value | lower }}">{{i.variation_value | capfirst}}</option>
-										{% endfor %}
-									</select>
-								</div>
-							
-								<div class="dropdown">
-									<label for="color">Select Color</label>
-									<select id="color" name="color" required>
-										<option value="" disabled selected>Select</option>
-										{% for i in product.variation_set.colors %}
-											<option value="{{i.variation_value | lower }}">{{i.variation_value | capfirst}}</option>
-										{% endfor %}
-									</select>
-								</div>
-								<div class="rating-star">
-									<!-- Rating stars code here -->
-								</div>
-								<br>
-								<div class="actions">
-									{% if product.stock <= 0 %}
-										<h2 class='text-danger'>Out Of Stock </h2>
-									{% else %}
-										<button type="submit" class="add-to-cart">Add to Cart</button>
-										{% comment %} <button class="buy-now"><a class="placeorder" href="/templates/components/place_order.html">Buy Now</a></button> {% endcomment %}
-									{% endif %}
-								</div>
-							</form>
-						</div>
-					</div>
-					
-					<section class="terms-reviews">
-						<div class="terms">
-							<h3>Terms & Condition</h3>
-							<p>By using Loja, you agree to our Terms and Conditions, which require accurate account information, lawful use of the platform, and compliance with our policies on orders, payments, shipping, returns, and refunds. Loja is not liable for any damages or errors, and we reserve the right to update these terms at any time. Contact us at [Your Contact Email] for any inquiries.</p>
-						</div>
-						<div class="reviews">
-							<h3>Reviews Stock</h3>
-							<p>By submitting a review on Loja, you agree to provide honest, accurate, and respectful feedback. Loja reserves the right to remove any reviews that violate our policies or are deemed inappropriate. Your reviews may be used for marketing and promotional purposes.
+{% comment %}
+<section class="section-content padding-y bg"> {% endcomment %}
+    {% comment %}
+    <div class="container"> {% endcomment %}
 
 
 
 
+        <div class="title-bar">
+            <h2>KAFTAN FASHION</h2>
+        </div>
+        
+            <div class="row">
+                <div class="product-details">
+                    <div class="col-md-4">
+                        <div class="main-image">
+                            <img src="{{ product.images.url }}" alt="Kaftan Fashion">
+                            <div class="thumbnails">
+                                {% for i in product_gallery %}
+                                <a href="{{i.image.url}}" target="mainImage"><img src="{{i.image.url}}"
+                                        alt="Product Image"></a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="product-info">
+                            <form action="{% url 'add_cart' product.id %}" method="POST">
+                                {% csrf_token %}
+                                <h3>{{ product.product_name }}</h3>
+                                <p class="kaftan_p">{{product.description}}</p>
+                                <div class="price">
+                                    <span>PKR {{product.price}}</span>
+                                </div>
+                                <div class="dropdown">
+                                    <label for="size">Select Size</label>
+                                    <select id="size" name="size" required>
+                                        <option value="" disabled selected>Select</option>
+                                        {% for i in product.variation_set.sizes %}
+                                        <option value="{{i.variation_value | lower }}">{{i.variation_value | capfirst}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+
+                                </div>
+
+                                <div class="dropdown">
+                                    <label for="color">Select Color</label>
+                                    <select id="color" name="color" required>
+                                        <option value="" disabled selected>Select</option>
+                                        {% for i in product.variation_set.colors %}
+                                        <option value="{{i.variation_value | lower }}">{{i.variation_value | capfirst}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="rating-star">
+                                    <!-- Rating stars code here -->
+                                </div>
+                                <br>
+                                <div class="actions">
+                                    {% if product.stock <= 0 %} <h2 class='text-danger'>Out Of Stock </h2>
+                                        {% else %}
+                                        <button type="submit" class="add-to-cart">Add to Cart</button>
+                                        {% comment %}
+                                        <button class="buy-now"><a class="placeorder"
+                                                href="/templates/components/place_order.html">Buy
+                                                Now</a></button>
+                                        {% endcomment %}
+                                        {% endif %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="terms-reviews">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="terms">
+                            <h3>Terms & Condition</h3>
+                            <p>By using Loja, you agree to our Terms and Conditions, which require accurate account
+                                information, lawful use of the platform, and compliance with our policies on orders,
+                                payments, shipping, returns, and refunds. Loja is not liable for any damages or errors,
+                                and we reserve the right to update these terms at any time. Contact us at [Your Contact
+                                Email] for any inquiries.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="reviews">
+                            <h3>Reviews Stock</h3>
+                            <p>By submitting a review on Loja, you agree to provide honest, accurate, and respectful
+                                feedback. Loja reserves the right to remove any reviews that violate our policies or are
+                                deemed inappropriate. Your reviews may be used for marketing and promotional purposes.
 
 
-							</p>
-						</div>
-						
-					</section>
-					<div class="row">
-						<div class="col-md-9">
-			
-							
-			
-							<form action="{% url 'submit_review' product.id %}" method="POST">
-								{% csrf_token %}
-								<h5>Write Your review</h5>
-								<div>
-									<!-- rating star -->
-									<label for="">How do you rate this product?</label>
-									<br>
-									<div class="rate">
-										<input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10" title="5"></label>
-										<input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9" title="4.5" class="half"></label>
-										<input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8" title="4"></label>
-										<input type="radio" name="rating" id="rating7" value="3.5" required /><label for="rating7" title="3.5" class="half"></label>
-										<input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6" title="3"></label>
-										<input type="radio" name="rating" id="rating5" value="2.5" required /><label for="rating5" title="2.5" class="half"></label>
-										<input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4" title="2" ></label>
-										<input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3" title="1.5" class="half"></label>
-										<input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2" title="1"></label>
-										<input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1" title="0.5" class="half"></label>
-									</div>
-									<br>
-									Review title
-									<input type="text" class="form-control" name="subject">
-									<br>
-									Review:
-									<textarea name="review" id="" rows="4" class="form-control"></textarea>
-									<br>
-									{% if user.is_authenticated %}
-									 {% if orderproduct %}
-									<input type="submit" value="Submit Review" class="buy-now">
-									{% else %}
-									<P> You must purchase this product to post a review</P>
-									{% endif %}
-									{% else %}
-									<P>To submit the review you must have to logged in <span><a href="{% url 'login' %}">Login Now</a></span></p>
-									{% endif %}
-										
-								</div>
-								{% include "includes/alerts.html" %}
-							</form>
-							<br>
-							<header class="section-heading">
-								<h3>Customer Reviews</h3> 
-								<div class="rating-star">
-									<span>
-										<i class="fa fa-star{% if product.averageReview < 0.5 %}-o {% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
-										<i class="fa fa-star{% if product.averageReview < 1.5 %}-o {% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
-										<i class="fa fa-star{% if product.averageReview < 2.5 %}-o {% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
-										<i class="fa fa-star{% if product.averageReview < 3.5 %}-o {% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
-										<i class="fa fa-star{% if product.averageReview < 4.5 %}-o {% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
-										<span>
-											{{ product.countReview }} Reviews
-										</span>
-									</span>
-								</div>
-							</header>
-			
-							{% for review in reviews %}
-								<article class="box mb-3">
-									<div class="icontext w-100">
-										
-										
-										<div class="text">
-											<span class="date text-muted float-md-right">{{ review.updated_date }} </span>
-											<h6 class="mb-1">{{review.user.full_name}} </h6>
-											<div class="rating-star">
-												<span>
-													<i class="fa fa-star{% if review.rating == 0.5 %}-half-o {% elif review.rating < 1 %}-o {% endif %}" aria-hidden="true"></i>
-													<i class="fa fa-star{% if review.rating == 1.5 %}-half-o {% elif review.rating < 2 %}-o {% endif %}" aria-hidden="true"></i>
-													<i class="fa fa-star{% if review.rating == 2.5 %}-half-o {% elif review.rating < 3 %}-o {% endif %}" aria-hidden="true"></i>
-													<i class="fa fa-star{% if review.rating == 3.5 %}-half-o {% elif review.rating < 4 %}-o {% endif %}" aria-hidden="true"></i>
-													<i class="fa fa-star{% if review.rating == 4.5 %}-half-o {% elif review.rating < 5 %}-o {% endif %}" aria-hidden="true"></i>
-												</span>
-											</div>
-										</div>
-									</div> <!-- icontext.// -->
-									<div class="mt-3">
-										<h6>{{review.subject}}</h6>
-										<p>
-										{{review.review}}
-										</p>
-									</div>
-								  </article>
-							{% endfor %}
-			
-			
-			
-						</div> <!-- col.// -->
-					</div> <!-- row.// -->
-			
-			
-					<div class="updated-main-product-section">
-						{% if products %}
-							{% for product in products %}
-							<div class="updated-main-product-card">
-								<img src="{{ product.images.url }}" alt="Product Image">
-								<div class="updated-product-info">
-									<h2 class="updated-add_to_cart_title">{{ product.product_name }}</h2>
-									<div class="updated-bottom">
-										<p class="updated-price"><sup>PKR</sup><b>{{ product.price }}</b></p>
-										<a href="{{ product.get_product_detail_url }}" class="updated-addtocart">View Product</a>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
-						{% else %}
-							<div class="text-center">
-								<h2 class="text-center">No Item Found, Please try Again</h2>
-							</div>
-						{% endif %}
-					</div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+       
+        
 
 
-{% comment %} Product deatil new  {% endcomment %}
+                <form action="{% url 'submit_review' product.id %}" method="POST">
+                    {% csrf_token %}
+                    <h5>Write Your review</h5>
+                    <div>
+                        <!-- rating star -->
+                        <label for="">How do you rate this product?</label>
+                        <br>
+                        <div class="rate">
+                            <input type="radio" name="rating" id="rating10" value="5" required /><label for="rating10"
+                                title="5"></label>
+                            <input type="radio" name="rating" id="rating9" value="4.5" required /><label for="rating9"
+                                title="4.5" class="half"></label>
+                            <input type="radio" name="rating" id="rating8" value="4" required /><label for="rating8"
+                                title="4"></label>
+                            <input type="radio" name="rating" id="rating7" value="3.5" required /><label for="rating7"
+                                title="3.5" class="half"></label>
+                            <input type="radio" name="rating" id="rating6" value="3" required /><label for="rating6"
+                                title="3"></label>
+                            <input type="radio" name="rating" id="rating5" value="2.5" required /><label for="rating5"
+                                title="2.5" class="half"></label>
+                            <input type="radio" name="rating" id="rating4" value="2" required /><label for="rating4"
+                                title="2"></label>
+                            <input type="radio" name="rating" id="rating3" value="1.5" required /><label for="rating3"
+                                title="1.5" class="half"></label>
+                            <input type="radio" name="rating" id="rating2" value="1" required /><label for="rating2"
+                                title="1"></label>
+                            <input type="radio" name="rating" id="rating1" value="0.5" required /><label for="rating1"
+                                title="0.5" class="half"></label>
+                        </div>
+                        <br>
+                        Review title
+                        <input type="text" class="form-control" name="subject">
+                        <br>
+                        Review:
+                        <textarea name="review" id="" rows="4" class="form-control"></textarea>
+                        <br>
+                        {% if user.is_authenticated %}
+                        {% if orderproduct %}
+                        <input type="submit" value="Submit Review" class="buy-now">
+                        {% else %}
+                        <P> You must purchase this product to post a review</P>
+                        {% endif %}
+                        {% else %}
+                        <P>To submit the review you must have to logged in <span><a href="{% url 'login' %}">Login
+                                    Now</a></span></p>
+                        {% endif %}
+
+                    </div>
+                    {% include "includes/alerts.html" %}
+                </form>
+                <br>
+                <header class="section-heading">
+                    <h3>Customer Reviews</h3>
+                    <div class="rating-star">
+                        <span>
+                            <i class="fa fa-star{% if product.averageReview < 0.5 %}-o {% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.averageReview < 1.5 %}-o {% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.averageReview < 2.5 %}-o {% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.averageReview < 3.5 %}-o {% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}"
+                                aria-hidden="true"></i>
+                            <i class="fa fa-star{% if product.averageReview < 4.5 %}-o {% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}"
+                                aria-hidden="true"></i>
+                            <span>
+                                {{ product.countReview }} Reviews
+                            </span>
+                        </span>
+                    </div>
+                </header>
+
+                {% for review in reviews %}
+                <article class="box mb-3">
+                    <div class="icontext w-100">
 
 
-		
-{% endblock content %}
+                        <div class="text">
+                            <span class="date text-muted float-md-right">{{ review.updated_date }} </span>
+                            <h6 class="mb-1">{{review.user.full_name}} </h6>
+                            <div class="rating-star">
+                                <span>
+                                    <i class="fa fa-star{% if review.rating == 0.5 %}-half-o {% elif review.rating < 1 %}-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating == 1.5 %}-half-o {% elif review.rating < 2 %}-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating == 2.5 %}-half-o {% elif review.rating < 3 %}-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating == 3.5 %}-half-o {% elif review.rating < 4 %}-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                    <i class="fa fa-star{% if review.rating == 4.5 %}-half-o {% elif review.rating < 5 %}-o {% endif %}"
+                                        aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div> <!-- icontext.// -->
+                    <div class="mt-3">
+                        <h6>{{review.subject}}</h6>
+                        <p>
+                            {{review.review}}
+                        </p>
+                    </div>
+                </article>
+                {% endfor %}
+
+
+           
+
+
+        <div class="updated-main-product-section">
+            {% if products %}
+            {% for product in products %}
+            <div class="updated-main-product-card">
+                <img src="{{ product.images.url }}" alt="Product Image">
+                <div class="updated-product-info">
+                    <h2 class="updated-add_to_cart_title">{{ product.product_name }}</h2>
+                    <div class="updated-bottom">
+                        <p class="updated-price"><sup>PKR</sup><b>{{ product.price }}</b></p>
+                        <a href="{{ product.get_product_detail_url }}" class="updated-addtocart">View Product</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="text-center">
+                <h2 class="text-center">No Item Found, Please try Again</h2>
+            </div>
+            {% endif %}
+        </div>
+
+
+        {% comment %} Product deatil new {% endcomment %}
+
+
+        {% endblock content %}
