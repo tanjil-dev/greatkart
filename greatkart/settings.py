@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=True ,cast=bool)#True
 print(DEBUG)
-ALLOWED_HOSTS = ['loja.pk', 'www.loja.pk', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['loja.pk', 'www.loja.pk', 'localhost', '127.0.0.1', '0.0.0.0', '192.168.10.101']
 
 #  greatKart-course-env.eba-a7aervi5.us-west-2.elasticbeanstalk.com
 # Application definition
@@ -82,6 +82,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'greatkart.wsgi.application'
 AUTH_USER_MODEL  = 'account.Account'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.loja.pk',
+    'https://loja.pk',
+]
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

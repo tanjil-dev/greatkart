@@ -22,7 +22,6 @@ display:none;
 
 /* Adjust any potentially problematic parent elements */
 #container {
-    padding-top: 70px; /* Adjust padding or margin to prevent overlap */
     height: auto; /* Make sure the height adjusts to content */
     overflow: visible; /* Ensure content is not cut off */
 }
