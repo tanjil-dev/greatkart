@@ -1,21 +1,48 @@
-{% extends "admin/base_site.html" %}
+{% extends "admin/base.html" %}
 {% load static %}
-{% load i18n %}
+
 {% block branding %}
-<h1 id="site-name">
-    <a href="{% url 'admin:index' %}">{% trans 'Django administration' %}</a>
-    <label style="margin-left: 20px;">
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">Django Admin</a>
+        <label style="margin-left: 20px;">
         <input type="checkbox" id="dark-mode-switch" /> Dark Mode
-    </label>
-</h1>
+        </label>
+    </h1>
+<button class="theme-toggle"  style="display:none;">
+    <div class="visually-hidden theme-label-when-auto">Toggle theme (current theme: auto)</div>
+    <div class="visually-hidden theme-label-when-light">Toggle theme (current theme: light)</div>
+    <div class="visually-hidden theme-label-when-dark">Toggle theme (current theme: dark)</div>
+    <svg aria-hidden="true" class="theme-icon-when-auto">
+        <use xlink:href="#icon-auto"></use>
+    </svg>
+    <svg aria-hidden="true" class="theme-icon-when-dark">
+        <use xlink:href="#icon-moon"></use>
+    </svg>
+    <svg aria-hidden="true" class="theme-icon-when-light">
+        <use xlink:href="#icon-sun"></use>
+    </svg>
+</button>
+
+{% endblock %}
+
+{% block nav-global %}
+    {{ block.super }}
+    <div class="admin-header-custom">
+        <!-- Example of adding a custom icon or additional elements -->
+        <div class="logout-button">
+            <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extrastyle %}
 {{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/custom-admin.css' %}">
 <link rel="stylesheet" href="{% static 'admin/css/dark-mode.css' %}">
 {% endblock %}
 
 {% block extrahead %}
 {{ block.super }}
+<script src="{% static 'admin/js/custom-admin.js' %}"></script>
 <script src="{% static 'admin/js/dark-mode.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,28 @@
+/* Ensure the branding block has sufficient height */
+#site-name {
+    font-size: 24px; /* Adjust font size as needed */
+    line-height: 1.5; /* Adjust line height to control the spacing */
+    padding: 10px 0; /* Add vertical padding to increase height */
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center items */
+    min-height: 60px; /* Ensure the block has a minimum height */
+    overflow: visible; /* Ensure content is not cut off */
+}
+
+/* Adjust header container */
+#header {
+    padding: 10px 20px; /* Adjust padding to ensure content fits */
+    height: auto; /* Make sure the height adjusts to content */
+    overflow: visible; /* Prevent content from being cut off */
+}
+
+.theme-toggle{
+display:none;
+}
+
+/* Adjust any potentially problematic parent elements */
+#container {
+    padding-top: 70px; /* Adjust padding or margin to prevent overlap */
+    height: auto; /* Make sure the height adjusts to content */
+    overflow: visible; /* Ensure content is not cut off */
+}
