@@ -66,7 +66,7 @@ ROOT_URLCONF = 'greatkart.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,8 +74,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'category.context_processors.menu_links', 
-                'carts.context_processors.counter',
             ],
         },
     },
@@ -135,6 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, images)
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/www/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Media files (uploaded by users)
 MEDIA_URL = '/media/'

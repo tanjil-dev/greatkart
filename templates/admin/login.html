@@ -1,0 +1,22 @@
+{% extends "admin/login.html" %}
+{% load static %}
+{% load i18n %}
+{% block branding %}
+<h1 id="site-name">
+    <a href="{% url 'admin:index' %}">{% trans 'Django administration' %}</a>
+    <label style="margin-left: 20px;">
+        <input type="checkbox" id="dark-mode-switch" /> Dark Mode
+    </label>
+</h1>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'admin/css/dark-mode.css' %}">
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script src="{% static 'admin/js/dark-mode.js' %}"></script>
+</script>
+{% endblock %}
