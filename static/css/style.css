@@ -993,13 +993,21 @@ footer h2 {
     color: white; /* White text color */
     border-color: #ff9c6e; /* Sand color for border */
 }
-
+.terms-reviews {
+    padding-top: 200px;
+    width: 80%;
+    margin-bottom: 20px;
+    font-size: 1em;
+    padding: 5px;
+}
+@media {
+    
+}
 /* Terms and Conditions and Reviews Section */
 .terms-reviews {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    
     padding: 20px;
+    padding-top: 225px;
     border-bottom: 1px solid #ddd;
     margin-left: auto; /* Center align */
     margin-right: auto; /* Center align */
@@ -1007,7 +1015,7 @@ footer h2 {
 }
 
 .terms-reviews a {
-    margin: 0 20px;
+   margin-top: 225px;
     text-decoration: none;
     color: #333;
     font-size: 18px;
@@ -1597,8 +1605,11 @@ img.background {
     font-size: 2em;
     margin-bottom: 10px;
 }
-
+.section-heading{
+    text-align: center;
+}
 form {
+    text-align: center;
     display: flex;
     flex-direction: column;
 }
@@ -1881,6 +1892,7 @@ form button:hover {
     }
 
     .terms-reviews {
+        margin-top: 270px;
         width: 80%;
         margin-bottom: 20px;
         font-size: 1em;
@@ -2041,7 +2053,7 @@ form button:hover {
     .add-to-cart,
     .buy-now {
         width: 100%;
-        height: 150px;
+        /* height: 150px; */
         font-size: 18px;
         margin-bottom: 10px;
     }
